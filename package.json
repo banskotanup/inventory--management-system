@@ -1,0 +1,17 @@
+{
+  "name": "inventory--management-system",
+  "version": "1.0.0",
+  "description": "An Inventory Management System in Express.js efficiently tracks stock levels, orders, and sales. It enables real-time updates, user authentication, and role-based access. With RESTful APIs, database integration postgresql, and features like barcode scanning, it streamlines inventory operations, reducing errors and improving efficiency.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anup Banskota",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1"
+  }
+}
