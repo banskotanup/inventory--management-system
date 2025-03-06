@@ -12,9 +12,10 @@ exports.getCategories = async () => {
 
 exports.getItems = async () => {
     const { rows } = await pool.query(`SELECT items.*, categories.category_name, suppliers.name AS supplier_name
-            FROM items
+            FROM items 
             JOIN categories ON items.category_id = categories.id
             JOIN suppliers ON items.supplier_id = suppliers.id
+            ORDER BY id DESC LIMIT 8
         `);
     return rows;
 };
@@ -23,6 +24,7 @@ exports.getPurchaseOrder = async () => {
     const { rows } = await pool.query(`SELECT purchase_order.*, suppliers.name AS supplier_name
             FROM purchase_order
             JOIN suppliers ON purchase_order.supplier_id = suppliers.id
+            ORDER BY id DESC LIMIT 5;
         `);
     return rows;
 };
@@ -38,7 +40,7 @@ exports.getPurchaseItem = async () => {
 };
 
 exports.getSalesOrder = async () => {
-    const { rows } = await pool.query(`SELECT * FROM sales_order`);
+    const { rows } = await pool.query(`SELECT * FROM sales_order ORDER BY id DESC LIMIT 5`);
     return rows;
 };
 

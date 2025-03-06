@@ -13,4 +13,9 @@ exports.getIndex = async (req, res) => {
     });
 };
 
-
+exports.getSuppliers = async (req, res) => {
+    res.render("supplier_list", {
+        title: "Suppliers Lists",
+        suppliers: await db.getSuppliers(),
+    });
+};
