@@ -11,162 +11,157 @@
     <title><%=title%></title>
 </head>
 <body>
-    <%-include("header.ejs")%>
-    <div class="main">
-        <div class="welcome-text">
-            <h3>Welcome to Inventory Software System</h3>
-        </div>
-        <div class="sup_header">
-            <div class="left-sup">
-                <h2>Suppliers Lists</h2>
+    <div class="wrapper">
+        <%-include("header.ejs")%>
+        <div class="main">
+            <div class="welcome-text">
+                <h3>Welcome to Inventory Software System</h3>
             </div>
-            <div class="right-sup">
-                <a class="addSup" href="">Add new suppliers</a>
-                <a class="allSup" href="/suppliers">View all suppliers</a>
+            <div class="sup_header">
+                <div class="left-sup">
+                    <h2>Suppliers Lists</h2>
+                </div>
+                <div class="right-sup">
+                    <a class="addSup" href="">Add new suppliers</a>
+                    <a class="allSup" href="/suppliers">View all suppliers</a>
+                </div>
             </div>
-        </div>
-        <%if(locals.suppliers){%>
-            <table>
-                <tr class="table-header">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Contact Person</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Created Date</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <%suppliers.forEach(supplier => {%>
-                       <td><%=supplier.id%></td> 
-                       <td><%=supplier.name%></td>
-                       <td><%=supplier.contact_person%></td>
-                       <td><%=supplier.email%></td>
-                       <td><%=supplier.phone%></td>
-                       <td><%=supplier.address%></td>
-                       <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
-                       <td>
-                        <form action="">
-                            <button class="updateBtn" type="submit">Update</button>
-                        </form>
-                        <form action="">
-                            <button class="deleteBtn"  type="submit">Delete</button>
-                        </form>
-                       </td>
-                    <%});%>
-                </tr>
-            </table>
-        <%}%>
+            <%if(locals.suppliers){%>
+                <table>
+                    <tr class="table-header">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact Person</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <%suppliers.forEach(supplier => {%>
+                           <td><%=supplier.id%></td>
+                           <td><%=supplier.name%></td>
+                           <td><%=supplier.contact_person%></td>
+                           <td><%=supplier.email%></td>
+                           <td><%=supplier.phone%></td>
+                           <td><%=supplier.address%></td>
+                           <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
+                           <td>
+                            <form action="">
+                                <button class="updateBtn" type="submit">Update</button>
+                            </form>
+                            <form action="">
+                                <button class="deleteBtn"  type="submit">Delete</button>
+                            </form>
+                           </td>
+                        <%});%>
+                    </tr>
+                </table>
+            <%}%>
         
-        <hr>
-
-
-        <div class="item-header">
+            <hr>
             <div class="item-header">
-                <h2>Featured <span class="it-pro">Products</span></h2>
+                <div class="item-header">
+                    <h2>Featured <span class="it-pro">Products</span></h2>
+                </div>
+            </div>
+            <%if(locals.items){%>
+                <div class="cards">
+                    <%items.forEach(item => {%>
+                        <div class="card">
+                            <div class="img">
+                                <img src="../public//images/img.jpeg" alt="">
+                            </div>
+                            <div class="item-desc">
+                                <p><span>Name:</span> <%=item.name%></p>
+                                <p><span>Description:</span> <%=item.description%></p>
+                                <p><span>Category Name:</span> <%=item.category_name%></p>
+                                <p><span>Unit Price:</span> <%=item.unit_price%></p>
+                                <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
+                            </div>
+                        </div>
+                    <%});%>
+                </div>
+            <%}%>
+            <hr>
+            <div class="order">
+                <div class="purchase-order">
+                    <div class="sup_header" style="justify-content: center;">
+                        <div class="left-sup">
+                            <h2>Purchase Order</h2>
+                        </div>
+                    </div>
+                    <%if(locals.p_orders){%>
+                        <div class="purchase-details">
+                            <table>
+                                <tr class="table-header">
+                                    <th>ID</th>
+                                    <th>Supplier Name</th>
+                                    <th>Total Purchase Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <%p_orders.forEach(order => {%>
+                                       <td><%=order.id%></td>
+                                       <td><%=order.supplier_name%></td>
+                                       <td><%=order.total_amount%></td>
+                                       <td><%=order.status%></td>
+                                       <td>
+                                        <form action="">
+                                            <button class="updateBtn" type="submit">Update</button>
+                                        </form>
+                                        <form action="">
+                                            <button class="deleteBtn"  type="submit">Delete</button>
+                                        </form>
+                                       </td>
+                                    <%});%>
+                                </tr>
+                            </table>
+                        </div>
+                    <%}%>
+                </div>
+                <div class="sales-order">
+                    <div class="sup_header" style="justify-content: center;">
+                        <div class="left-sup">
+                            <h2>Sales Order</h2>
+                        </div>
+                    </div>
+                    <%if(locals.s_orders){%>
+                        <div class="sales-details">
+                            <table>
+                                <tr class="table-header">
+                                    <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Total Sales Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <%s_orders.forEach(order => {%>
+                                       <td><%=order.id%></td>
+                                       <td><%=order.customer_name%></td>
+                                       <td><%=order.total_amount%></td>
+                                       <td><%=order.status%></td>
+                                       <td>
+                                        <form action="">
+                                            <button class="updateBtn" type="submit">Update</button>
+                                        </form>
+                                        <form action="">
+                                            <button class="deleteBtn"  type="submit">Delete</button>
+                                        </form>
+                                       </td>
+                                    <%});%>
+                                </tr>
+                            </table>
+                        </div>
+                    <%}%>
+                </div>
             </div>
         </div>
-        <%if(locals.items){%>
-            <div class="cards">
-                <%items.forEach(item => {%>
-                    <div class="card">
-                        <div class="img">
-                            <img src="../public//images/img.jpeg" alt="">
-                        </div>
-                        <div class="item-desc">
-                            <p><span>Name:</span> <%=item.name%></p>
-                            <p><span>Description:</span> <%=item.description%></p>
-                            <p><span>Category Name:</span> <%=item.category_name%></p>
-                            <p><span>Unit Price:</span> <%=item.unit_price%></p>
-                            <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
-                        </div>
-                    </div>
-                <%});%>
-            </div>
-        <%}%>
-
-
-        <hr>
-
-        <div class="order">
-            <div class="purchase-order">
-                <div class="sup_header" style="justify-content: center;">
-                    <div class="left-sup">
-                        <h2>Purchase Order</h2>
-                    </div>
-                </div>
-                <%if(locals.p_orders){%>
-                    <div class="purchase-details">
-                        <table>
-                            <tr class="table-header">
-                                <th>ID</th>
-                                <th>Supplier Name</th>
-                                <th>Total Purchase Amount</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>
-                                <%p_orders.forEach(order => {%>
-                                   <td><%=order.id%></td>
-                                   <td><%=order.supplier_name%></td>
-                                   <td><%=order.total_amount%></td>
-                                   <td><%=order.status%></td>
-                                   <td>
-                                    <form action="">
-                                        <button class="updateBtn" type="submit">Update</button>
-                                    </form>
-                                    <form action="">
-                                        <button class="deleteBtn"  type="submit">Delete</button>
-                                    </form>
-                                   </td>
-                                <%});%>
-                            </tr>
-                        </table>
-                    </div>
-                <%}%>
-            </div>
-
-            <div class="sales-order">
-                <div class="sup_header" style="justify-content: center;">
-                    <div class="left-sup">
-                        <h2>Sales Order</h2>
-                    </div>
-                </div>
-                <%if(locals.s_orders){%>
-                    <div class="sales-details">
-                        <table>
-                            <tr class="table-header">
-                                <th>ID</th>
-                                <th>Customer Name</th>
-                                <th>Total Sales Amount</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>
-                                <%s_orders.forEach(order => {%>
-                                   <td><%=order.id%></td>
-                                   <td><%=order.customer_name%></td>
-                                   <td><%=order.total_amount%></td>
-                                   <td><%=order.status%></td>
-                                   <td>
-                                    <form action="">
-                                        <button class="updateBtn" type="submit">Update</button>
-                                    </form>
-                                    <form action="">
-                                        <button class="deleteBtn"  type="submit">Delete</button>
-                                    </form>
-                                   </td>
-                                <%});%>
-                            </tr>
-                        </table>
-                    </div>
-                <%}%>
-            </div>
-        </div>
-
+        <%-include("footer.ejs")%>
     </div>
-    <%-include("footer.ejs")%>
 
 </body>
 </html>

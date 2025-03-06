@@ -5,10 +5,10 @@
          </a>
     </div>
     <div class="right-header">
-        <a href="/" class="active">Home</a>
-        <a href="">Inventory</a>
-        <a href="/suppliers">Suppliers</a>
-        <a href="">Purchase Order</a>
-        <a href="">Sales Order</a>
+        <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a>
+        <a href="/inventory" class="<%= currentPath === '/inventory' ? 'active' : '' %>">Inventory</a>
+        <a href="/suppliers" class="<%= currentPath === '/suppliers' ? 'active' : '' %>">Suppliers</a>
+        <a href="/purchase" class="<%= currentPath === '/purchase' ? 'active' : '' %>">Purchase Order</a>
+        <a href="/sales" class="<%= currentPath === '/sales' ? 'active' : '' %>">Sales Order</a>
     </div>
 </div>

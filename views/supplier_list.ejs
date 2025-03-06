@@ -11,54 +11,54 @@
     <title><%=title%></title>
 </head>
 <body>
-    <%-include("header.ejs")%>
-    <div class="main">
-        <div class="sup_header">
-            <div class="left-sup">
-                <h2>Suppliers Lists</h2>
+    <div class="wrapper">
+        <%-include("header.ejs")%>
+        <div class="main">
+            <div class="sup_header">
+                <div class="left-sup">
+                    <h2>Suppliers Lists</h2>
+                </div>
+                <div class="right-sup">
+                    <a class="addSup" href="">Add new suppliers</a>
+                    <a class="allSup" href="">View all suppliers</a>
+                </div>
             </div>
-            <div class="right-sup">
-                <a class="addSup" href="">Add new suppliers</a>
-                <a class="allSup" href="">View all suppliers</a>
-            </div>
+            <%if(locals.suppliers){%>
+                <table>
+                    <tr class="table-header">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact Person</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <%suppliers.forEach(supplier => {%>
+                           <td><%=supplier.id%></td>
+                           <td><%=supplier.name%></td>
+                           <td><%=supplier.contact_person%></td>
+                           <td><%=supplier.email%></td>
+                           <td><%=supplier.phone%></td>
+                           <td><%=supplier.address%></td>
+                           <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
+                           <td>
+                            <form action="">
+                                <button class="updateBtn" type="submit">Update</button>
+                            </form>
+                            <form action="">
+                                <button class="deleteBtn"  type="submit">Delete</button>
+                            </form>
+                           </td>
+                        <%});%>
+                    </tr>
+                </table>
+            <%}%>
         </div>
-        <%if(locals.suppliers){%>
-            <table>
-                <tr class="table-header">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Contact Person</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Created Date</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <%suppliers.forEach(supplier => {%>
-                       <td><%=supplier.id%></td> 
-                       <td><%=supplier.name%></td>
-                       <td><%=supplier.contact_person%></td>
-                       <td><%=supplier.email%></td>
-                       <td><%=supplier.phone%></td>
-                       <td><%=supplier.address%></td>
-                       <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
-                       <td>
-                        <form action="">
-                            <button class="updateBtn" type="submit">Update</button>
-                        </form>
-                        <form action="">
-                            <button class="deleteBtn"  type="submit">Delete</button>
-                        </form>
-                       </td>
-                    <%});%>
-                </tr>
-            </table>
-        <%}%>
-
+        <%-include("footer.ejs")%>
     </div>
-
-    <%-include("footer.ejs")%>
 
 </body>
 </html>

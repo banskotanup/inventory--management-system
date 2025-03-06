@@ -13,6 +13,10 @@
     border-radius: 10px;
 }
 
+::-webkit-scrollbar:hover{
+    width: 7px;
+}
+
 ::-webkit-scrollbar-thumb:hover{
     background-color: #23aa2a;
 }
@@ -21,6 +25,12 @@ body{
     margin: 0;
     padding: 0;
     height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header{
@@ -67,6 +77,10 @@ body{
     color: #c8f03a;
 }
 
+.right-header a.active{
+    color: #b5dd24;
+}
+
 .welcome-text{
     font-size: 22px;
     text-align: center;
@@ -93,18 +107,15 @@ body{
 }
 
 .main{
-    display: grid;
     margin-left: 10px;
     margin-right: 10px;
-}
-
-a.active{
-    color: #FFEB3B;
+    flex: 1;
 }
 
 table{
     text-align: center;
     border-collapse: collapse;
+    width: 100%;
 }
 
 th, td{
@@ -214,6 +225,7 @@ hr {
     display: flex;
     flex-direction: column;
     height: 60vh;
+    margin-top: 10px;
     margin-left: 5%;
     margin-bottom: 30px;
     background-color: #dff3e1;
