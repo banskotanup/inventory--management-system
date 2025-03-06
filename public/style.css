@@ -4,11 +4,23 @@
     font-family: "Playfair Display", serif;
 }
 
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #2E7D32;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #23aa2a;
+}
+
 body{
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow: hidden;
 }
 
 .header{
@@ -18,6 +30,10 @@ body{
     background-color: #2E7D32;
     color: #FFFFFF;
     height: 10%;
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    top: 0;
 }
 
 .left-header{
@@ -139,5 +155,77 @@ tr:nth-child(even) {
 hr {
     border: 1px solid #81C784; 
     width: 100%; 
+}
+
+.item-header{
+    text-align: center;
+}
+
+.it-pro{
+    color: #23aa2a;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    background-color: #dff3e1;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    background-color: #a8e7af;
+    cursor: pointer;
+}
+
+.img{
+    height: 50%;
+    margin-bottom: 10%;
+}
+
+.img>img{
+    width: 80%;
+    height: 100%;
+    margin: 10%;
+    border: 1px solid green;
+    border-radius: 5%;
+}
+
+.item-desc{
+    margin-left: 10%;
+    margin-top: 5px;
+    text-align: justify;
+}
+
+.item-desc p span{
+    font-weight: 700;
+}
+
+.order{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.purchase-order{
+    width: 100%;
+}
+
+.purchase-details table{
+    width: 98%;
+}
+
+.sales-details table{
+    width: 98%;
 }
 
