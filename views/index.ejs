@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+</head>
+<body>
+    <h1><%=title%></h1>
+    <ul>
+        <%if(locals.suppliers){ %>
+            <%suppliers.forEach(supplier => {%>
+                <li>ID: <%=supplier.id%> Name: <%=supplier.name%> Contact Person: <%=supplier.contact_person%> Email: <%=supplier.email%> Phone: <%=supplier.phone%> Address: <%=supplier.address%> Created Date: <%=supplier.created_at%></li>
+            <%});%>
+        <%}%>
+    </ul>
+
+    <ul>
+        <%if(locals.categories){%>
+            <%categories.forEach(category => {%>
+                <li>ID: <%=category.id%> Category Name: <%=category.category_name%> Description: <%=category.description%> Created At: <%=category.created_at%></li>
+            <%});%>
+        <%}%>
+    </ul>
+
+    <ul>
+        <%if(locals.items){%>
+            <%items.forEach(item => {%>
+                <li>ID: <%=item.id%> Name: <%=item.name%> SKU: <%=item.sku%> Description: <%=item.description%> Category Name: <%=item.category_name%> Supplier Name: <%=item.supplier_name%> Unit Price: <%=item.unit_price%> Qty in Stock: <%=item.qty_in_stock%> Created Date: <%=item.created_at%></li>
+            <%});%>
+        <%}%>
+    </ul>
+
+    <ul>
+        <%if(locals.p_orders){%>
+            <%p_orders.forEach(order =>{%>
+                <li>ID: <%=order.id%> Supplier Name: <%=order.supplier_name%> Order Date: <%=order.order_date%> Status: <%=order.status%></li>
+            <%});%>
+        <%}%>
+    </ul>
+
+    <ul>
+        <%if(locals.po_items){%>
+            <%po_items.forEach(item => {%>
+                <li>ID: <%=item.id%> Purchase Order Id: <%=item.po_id%> Item Name: <%=item.item_name%> Qty: <%=item.qty%> Unit Price: <%=item.unit_price%></li>
+            <%});%>
+        <%}%>
+    </ul>
+
+</body>
+</html>
