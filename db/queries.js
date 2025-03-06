@@ -1,7 +1,7 @@
 const pool = require("../db/pool");
 
 exports.getSuppliers = async () => {
-    const { rows } = await pool.query("SELECT * FROM suppliers");
+    const { rows } = await pool.query("SELECT * FROM suppliers ORDER BY id DESC LIMIT 3");
     return rows;
 };
 
@@ -34,5 +34,22 @@ exports.getPurchaseItem = async () => {
             JOIN items ON purchase_order_items.item_id = items.id
         `);
     
+    return rows;
+};
+
+exports.getSalesOrder = async () => {
+    const { rows } = await pool.query(`SELECT * FROM sales_order`);
+    return rows;
+};
+
+exports.getSalesItem = async () => {
+    const { rows } = await pool.query(`SELECT sales_order_items.*,
+            sales_order.id as so_id,
+            items.name AS item_name
+            FROM sales_order_items
+            JOIN sales_order ON sales_order_items.so_id = sales_order.id
+            JOIN items ON sales_order_items.item_id = items.id
+        
+        `);
     return rows;
 };

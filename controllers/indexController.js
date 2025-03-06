@@ -8,6 +8,9 @@ exports.getIndex = async (req, res) => {
         items: await db.getItems(),
         p_orders: await db.getPurchaseOrder(),
         po_items: await db.getPurchaseItem(),
+        s_orders: await db.getSalesOrder(),
+        so_items: await db.getSalesItem(),
     });
 };
+
 

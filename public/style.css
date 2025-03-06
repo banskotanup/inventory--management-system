@@ -1,0 +1,143 @@
+:root{
+    box-sizing: border-box;
+    background-color: #E8F5E9;
+    font-family: "Playfair Display", serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header{
+    display: grid;
+    grid-template-columns: 30% 80%;
+    column-gap: 20px;
+    background-color: #2E7D32;
+    color: #FFFFFF;
+    height: 10%;
+}
+
+.left-header{
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    margin-top: 8px;
+}
+
+.right-header{
+    display: grid;
+    grid-template-columns: 120px 120px 120px 120px;
+    text-align: end;
+    margin-right: 15%;
+    align-content: center;
+    justify-content: end;
+    justify-items: start;
+    gap: 30px;
+}
+
+.right-header a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #FFFFFF;
+}
+
+.main{
+    display: grid;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 10px;
+}
+
+tr form{
+    display: inline-flex;
+}
+
+tr:nth-child(odd) {
+    background-color: #b3eec4;
+}
+
+tr:nth-child(even) {
+    background-color: #edffd8;
+}
+
+.updateBtn{
+    color: #fafafa; 
+    background-color: #23aa2a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.updateBtn:hover{
+    background-color: #0e6b11;
+}
+
+.deleteBtn{
+    color: #FFFFFF; 
+    background-color: #F44336;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover{
+    background-color: #8f0101;
+}
+
+.sup_header{
+    display: inline-flex;
+    width: 100%;
+}
+
+.right-sup{
+    width: 90%;
+    float: right;
+    text-align: end;
+    margin-top: 30px;
+}
+
+.addSup{
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgb(109, 180, 130);
+    background-color: #325e49;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+} 
+.allSup{
+    text-decoration: none;
+    color: white;
+    border: 1px solid green;
+    background-color: #0e7913;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.addSup:hover{
+    background-color: #547a53;
+}
+
+.allSup:hover{
+    background-color: #0b9606;
+}
+
+hr {
+    border: 1px solid #81C784; 
+    width: 100%; 
+}
+

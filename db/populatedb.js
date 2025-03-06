@@ -45,20 +45,21 @@ const SQL = `
     CREATE TABLE purchase_order(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         supplier_id INT,
+        total_amount DECIMAL(10, 2),
         order_date DATE DEFAULT NOW(),
         status order_status NOT NULL DEFAULT 'Pending',
         FOREIGN KEY (supplier_id) REFERENCES suppliers(id) ON DELETE SET NULL
     );
 
-    INSERT INTO purchase_order (supplier_id, status)
-    VALUES (1, 'Pending');
+    INSERT INTO purchase_order (supplier_id, total_amount, status)
+    VALUES (1, 30000, 'Pending');
 
     CREATE TABLE purchase_order_items(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         po_id INT,
         item_id INT,
         qty INT,
-        unit_price INT,
+        unit_price DECIMAL(10, 2),
         FOREIGN KEY (po_id) REFERENCES purchase_order(id) ON DELETE SET NULL,
         FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE SET NULL
     );
@@ -66,6 +67,29 @@ const SQL = `
     INSERT INTO purchase_order_items (po_id, item_id, qty, unit_price)
     VALUES (1, 1, 20, 1500);
 
+    CREATE TABLE sales_order (
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        customer_name VARCHAR (255) NOT NULL,
+        total_amount DECIMAL(10, 2),
+        order_date DATE DEFAULT NOW(),
+        status order_status NOT NULL DEFAULT 'Pending'
+    );
+
+    INSERT INTO sales_order (customer_name, total_amount, status)
+    VALUES ('Shristy Mishra', 20000, 'Pending');
+
+    CREATE TABLE sales_order_items(
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        so_id INT,
+        item_id INT,
+        qty INT,
+        unit_price DECIMAL(10, 2),
+        FOREIGN KEY (so_id) REFERENCES sales_order(id) ON DELETE SET NULL,
+        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE SET NULL
+    );
+
+    INSERT INTO sales_order_items(so_id, item_id, qty, unit_price)
+    VALUES (1, 1, 100, 2000);
 `;
 
 async function main() {
