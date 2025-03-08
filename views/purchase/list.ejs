@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+10&family=Jersey+15&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../public/images/logo.png" type="image/x-icon">
+    <title><%=title%></title>
+</head>
+<body>
+    <div class="wrapper">
+        <%-include("../header.ejs")%>
+        <div class="main">
+            <div class="sup_header">
+                <div class="left-sup">
+                    <h2>Purchase Order</h2>
+                </div>
+                <div class="right-sup">
+                    <a class="addSup" href="">Add new purchase</a>
+                </div>
+            </div>
+            <%if(locals.p_orders){%>
+                <table>
+                    <tr class="table-header">
+                        <th>ID</th>
+                        <th>Items</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Total Amount</th>
+                        <th>Supplier Name</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <%p_orders.forEach(order => {%>
+                           <td><%=order.id%></td>
+                           <td><%=order.item_name%></td>
+                           <td><%=order.qty%></td>
+                           <td><%=order.unit_price%></td>
+                           <td><%=order.total_amount%></td>
+                           <td><%=order.supplier_name%></td>
+                           <td><%=new Date(order.order_date).toLocaleDateString("en-ca")%></td>
+                           <td><%=order.status%></td>
+                           <td>
+                            <form action="">
+                                <button class="updateBtn" type="submit">Update</button>
+                            </form>
+                            <form action="">
+                                <button class="deleteBtn"  type="submit">Delete</button>
+                            </form>
+                           </td>
+                        <%});%>
+                    </tr>
+                </table>
+            <%}%>
+        </div>
+        <%-include("../footer.ejs")%>
+    </div>
+
+</body>
+</html>

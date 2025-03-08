@@ -12,11 +12,69 @@
 </head>
 <body>
     <div class="wrapper">
-        <%-include("header.ejs")%>
+        <%-include("../header.ejs")%>
         <div class="main">
             <div class="welcome-text">
                 <h3>Welcome to Inventory Software System</h3>
             </div>
+            <hr>
+
+            <div class="intro">
+                <div class="left-intro">
+                    <img src="/public/images/intro.png" alt="">
+                </div>
+                <div class="right-intro">
+                    <h3>Inventory <span>Software System</span></h3>
+                    <p>A digital tool used to track, manage, and optimize stock levels in a business. It helps businesses monitor product availability, sales, purchases, and storage locations in real time.</p>
+                    <hr>
+                    <div class="desc">
+                        <div class="features">
+                            <h3>Key features</h3>
+                            <p>✅ Stock Tracking – Keeps records of incoming and outgoing inventory.</p>
+                            <p>✅ Automation – Reduces manual errors by updating stock levels automatically.</p>
+                            <p>✅ Order Management – Helps in reordering stock when levels are low.</p>
+                            <p>✅ Reporting & Analytics – Provides insights on sales trends and stock performance.</p>
+                            <p>✅ Integration – Connects with accounting, sales, and supply chain systems.</p>
+                        </div>
+                        <div class="benefits">
+                            <h3>Benefits</h3>
+                            <p>✅ Reduces Manual Errors – Automation minimizes human mistakes.</p>
+                            <p>✅ Enhances Efficiency – Speeds up stock tracking and order management.</p>
+                            <p>✅ Optimizes Stock Levels – Prevents overstocking and stockouts.</p>
+                            <p>✅ Improves Customer Satisfaction – Ensures products are always available.</p>
+                            <p>✅ Saves Time & Costs – Reduces labor costs and enhances workflow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <hr>
+            <div class="item-header">
+                <div class="item-header">
+                    <h2>Featured <span class="it-pro">Products</span></h2>
+                </div>
+            </div>
+            <%if(locals.items){%>
+                <div class="cards">
+                    <%items.forEach(item => {%>
+                        <div class="card">
+                            <div class="img">
+                                <img src="../public//images/img.jpeg" alt="">
+                            </div>
+                            <div class="item-desc">
+                                <p><span>Name:</span> <%=item.name%></p>
+                                <p><span>Description:</span> <%=item.description%></p>
+                                <p><span>Category Name:</span> <%=item.category_name%></p>
+                                <p><span>Unit Price:</span> <%=item.unit_price%></p>
+                                <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
+                            </div>
+                        </div>
+                    <%});%>
+                </div>
+            <%}%>
+            <hr>
+
             <div class="sup_header">
                 <div class="left-sup">
                     <h2>Suppliers Lists</h2>
@@ -59,32 +117,9 @@
                     </tr>
                 </table>
             <%}%>
-        
+
             <hr>
-            <div class="item-header">
-                <div class="item-header">
-                    <h2>Featured <span class="it-pro">Products</span></h2>
-                </div>
-            </div>
-            <%if(locals.items){%>
-                <div class="cards">
-                    <%items.forEach(item => {%>
-                        <div class="card">
-                            <div class="img">
-                                <img src="../public//images/img.jpeg" alt="">
-                            </div>
-                            <div class="item-desc">
-                                <p><span>Name:</span> <%=item.name%></p>
-                                <p><span>Description:</span> <%=item.description%></p>
-                                <p><span>Category Name:</span> <%=item.category_name%></p>
-                                <p><span>Unit Price:</span> <%=item.unit_price%></p>
-                                <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
-                            </div>
-                        </div>
-                    <%});%>
-                </div>
-            <%}%>
-            <hr>
+
             <div class="order">
                 <div class="purchase-order">
                     <div class="sup_header" style="justify-content: center;">
@@ -160,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <%-include("footer.ejs")%>
+        <%-include("../footer.ejs")%>
     </div>
 
 </body>

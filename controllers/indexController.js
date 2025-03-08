@@ -1,7 +1,7 @@
 const db = require("../db/queries");
 
 exports.getIndex = async (req, res) => {
-    res.render("index", {
+    res.render("./homepage/index", {
         title: "IMS-Home",
         suppliers: await db.getSuppliers(),
         categories: await db.getCategories(),
@@ -10,12 +10,5 @@ exports.getIndex = async (req, res) => {
         po_items: await db.getPurchaseItem(),
         s_orders: await db.getSalesOrder(),
         so_items: await db.getSalesItem(),
-    });
-};
-
-exports.getSuppliers = async (req, res) => {
-    res.render("supplier_list", {
-        title: "Suppliers Lists",
-        suppliers: await db.getSuppliers(),
     });
 };
