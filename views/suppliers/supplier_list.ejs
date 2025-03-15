@@ -19,7 +19,7 @@
                     <h2>Suppliers Lists</h2>
                 </div>
                 <div class="right-sup">
-                    <a class="addSup" href="">Add new suppliers</a>
+                    <a class="addSup" href="/suppliers/add">Add new suppliers</a>
                 </div>
             </div>
             <%if(locals.suppliers){%>
@@ -34,8 +34,8 @@
                         <th>Created Date</th>
                         <th>Action</th>
                     </tr>
+                    <%suppliers.forEach(supplier => {%>
                     <tr>
-                        <%suppliers.forEach(supplier => {%>
                            <td><%=supplier.id%></td>
                            <td><%=supplier.name%></td>
                            <td><%=supplier.contact_person%></td>
@@ -44,15 +44,15 @@
                            <td><%=supplier.address%></td>
                            <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
                            <td>
-                            <form action="">
+                            <form action="/suppliers/<%=supplier.id%>/update" method="get">
                                 <button class="updateBtn" type="submit">Update</button>
                             </form>
                             <form action="">
                                 <button class="deleteBtn"  type="submit">Delete</button>
                             </form>
                            </td>
-                        <%});%>
                     </tr>
+                    <%});%>
                 </table>
             <%}%>
         </div>

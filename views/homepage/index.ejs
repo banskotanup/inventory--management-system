@@ -75,13 +75,9 @@
             <%}%>
             <hr>
 
-            <div class="sup_header">
+            <div class="sup_header" style="justify-content: center;">
                 <div class="left-sup">
                     <h2>Suppliers Lists</h2>
-                </div>
-                <div class="right-sup">
-                    <a class="addSup" href="">Add new suppliers</a>
-                    <a class="allSup" href="/suppliers">View all suppliers</a>
                 </div>
             </div>
             <%if(locals.suppliers){%>
@@ -94,7 +90,6 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Created Date</th>
-                        <th>Action</th>
                     </tr>
                     <tr>
                         <%suppliers.forEach(supplier => {%>
@@ -105,14 +100,6 @@
                            <td><%=supplier.phone%></td>
                            <td><%=supplier.address%></td>
                            <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
-                           <td>
-                            <form action="">
-                                <button class="updateBtn" type="submit">Update</button>
-                            </form>
-                            <form action="">
-                                <button class="deleteBtn"  type="submit">Delete</button>
-                            </form>
-                           </td>
                         <%});%>
                     </tr>
                 </table>
@@ -135,7 +122,6 @@
                                     <th>Supplier Name</th>
                                     <th>Total Purchase Amount</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                                 <tr>
                                     <%p_orders.forEach(order => {%>
@@ -143,14 +129,6 @@
                                        <td><%=order.supplier_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
-                                       <td>
-                                        <form action="">
-                                            <button class="updateBtn" type="submit">Update</button>
-                                        </form>
-                                        <form action="">
-                                            <button class="deleteBtn"  type="submit">Delete</button>
-                                        </form>
-                                       </td>
                                     <%});%>
                                 </tr>
                             </table>
@@ -171,7 +149,6 @@
                                     <th>Customer Name</th>
                                     <th>Total Sales Amount</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                                 <tr>
                                     <%s_orders.forEach(order => {%>
@@ -179,14 +156,6 @@
                                        <td><%=order.customer_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
-                                       <td>
-                                        <form action="">
-                                            <button class="updateBtn" type="submit">Update</button>
-                                        </form>
-                                        <form action="">
-                                            <button class="deleteBtn"  type="submit">Delete</button>
-                                        </form>
-                                       </td>
                                     <%});%>
                                 </tr>
                             </table>
