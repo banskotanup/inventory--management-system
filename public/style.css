@@ -310,3 +310,22 @@ hr {
     text-align: justify;
     margin-right: 20px;
 }
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+}

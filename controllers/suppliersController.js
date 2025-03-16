@@ -1,9 +1,19 @@
+const { end } = require("../db/pool");
 const db = require("../db/suppliers");
 
 exports.getSuppliers = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
     const suppliers = await db.getSuppliers();
 
-    const suppliersWithSno = suppliers.map((supplier, index) => {
+    const totalSuppliers = suppliers.length;
+    const totalPage = Math.ceil(totalSuppliers / limit);
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginateSuppliers = suppliers.slice(startIndex, endIndex);
+
+    const suppliersWithSno = paginateSuppliers.map((supplier, index) => {
         supplier.sno = index + 1;
         return supplier;
     });
@@ -11,6 +21,10 @@ exports.getSuppliers = async (req, res) => {
     res.render("./suppliers/supplier_list", {
         title: "Suppliers",
         suppliers: suppliersWithSno,
+        currentPage: page,
+        totalPage: totalPage,
+        hasPrev: page > 1,
+        hasNext: page < totalPage,
     });
 };
 
