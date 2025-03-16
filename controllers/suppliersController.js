@@ -85,7 +85,5 @@ exports.supplierUpdateGet = async (req, res) => {
     res.render("./suppliers/update", {
         title: "Update Suppliers",
         supplier: await db.getSupplier(Number(id)),
-        oldData: req.body,
-        err: '',
     })
 }
