@@ -1,9 +1,16 @@
 const db = require("../db/suppliers");
 
 exports.getSuppliers = async (req, res) => {
+    const suppliers = await db.getSuppliers();
+
+    const suppliersWithSno = suppliers.map((supplier, index) => {
+        supplier.sno = index + 1;
+        return supplier;
+    });
+
     res.render("./suppliers/supplier_list", {
         title: "Suppliers",
-        suppliers: await db.getSuppliers(),
+        suppliers: suppliersWithSno,
     });
 };
 
@@ -19,7 +26,7 @@ const { body, validationResult } = require("express-validator");
 const nameLenErr = "must not exceed 25 character.";
 const emailErr = "must be in email format.";
 const phoneErr = "must be 10 characters.";
-const addressErr = "must be between 5 to 20 characters.";
+const addressErr = "must be between 4 to 20 characters.";
 
 const validateSuppliers = [
     body("name").trim()
@@ -29,7 +36,7 @@ const validateSuppliers = [
     body("phone").trim()
         .isLength({ min: 10, max: 10 }).withMessage(`Phone number ${phoneErr}.`),
     body("address").trim()
-        .isLength({ min: 5, max: 20 }).withMessage(`Address ${addressErr}.`),
+        .isLength({ min: 4, max: 20 }).withMessage(`Address ${addressErr}.`),
 ];
 
 
@@ -85,5 +92,48 @@ exports.supplierUpdateGet = async (req, res) => {
     res.render("./suppliers/update", {
         title: "Update Suppliers",
         supplier: await db.getSupplier(Number(id)),
+        err: '',
     })
 }
+
+exports.supplierUpdatePost = [
+    validateSuppliers,
+    async (req, res) => {
+        const id = req.params.id;
+        const err = validationResult(req);
+        console.log(err);
+        const errMsg = {};
+        if (!err.isEmpty()) {
+            err.array().forEach(error => {
+                if (error.path) {
+                    errMsg[error.path] = error.msg;
+                };
+            });
+
+            res.status(400).render("./suppliers/update", {
+                title: "Update Suppliers",
+                supplier: await db.getSupplier(Number(id)),
+                err: errMsg,
+            });
+        }
+        else {
+            const { name, contact_person, email, phone, address } = req.body;
+            try {
+                db.postSupplier(id, { name, contact_person, email, phone, address });
+                res.redirect("/suppliers");
+            } catch (error) {
+                res.send("Something went wrong.");
+            }
+        }
+    }
+];
+
+exports.deleteSupplier = async (req, res) => {
+    const id = req.params.id;
+    try {
+        db.deleteSupplier(id);
+        res.redirect("/suppliers");
+    } catch (error) {
+        res.send("Something went wrong.");
+    }
+};

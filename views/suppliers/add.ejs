@@ -25,35 +25,45 @@
                 <%if(locals.errors && errors.general){%>
                     <div style="color: red;"><%=errors.general%></div>
                 <%}%>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="<%=oldData ?.name || ''%>" required>
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="<%=oldData ?.name || ''%>" required>
+                </div>
                 <%if(locals.errors && errors.name){%>
                     <div style="color: red;"><%=errors.name%></div>
                 <%}%>
                 <%if(err?.name){%>
                     <div style="color: red;"><%=err.name%></div>
                 <%}%>
-                <label for="contact_person">Contact Person</label>
-                <input type="text" name="contact_person" id="contact_person" required value="<%=oldData?.contact_person || '' %>">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required value="<%=oldData?.email || '' %>">
+                <div>
+                    <label for="contact_person">Contact Person</label>
+                    <input type="text" name="contact_person" id="contact_person" required value="<%=oldData?.contact_person || '' %>">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required value="<%=oldData?.email || '' %>">
+                </div>
                 <%if(locals.errors && errors.email){%>
                     <div style="color: red;"><%=errors.email%></div>
                 <%}%>
                 <%if(err?.email){%>
                     <div style="color: red;"><%=err.email%></div>
                 <%}%>
-                <label for="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value="<%=oldData?.phone || '' %>" required>
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" value="<%=oldData?.phone || '' %>" required>
+                </div>
                 <%if(err?.phone){%>
                     <p style="color: red;"><%=err.phone%></p>
                 <%}%>
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" required value="<%=oldData?.address || '' %>">
+                <div>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required value="<%=oldData?.address || '' %>">
+                </div>
                 <%if(err?.address){%>
                     <div style="color: red;"><%=err.address%></div>
                 <%}%>
-                <button type="submit">Submit</button>
+                <div><button type="submit">Submit</button></div>
             </form>
             
         </div>

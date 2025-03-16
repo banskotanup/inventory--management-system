@@ -83,7 +83,7 @@
             <%if(locals.suppliers){%>
                 <table>
                     <tr class="table-header">
-                        <th>ID</th>
+                        <th>S.No.</th>
                         <th>Name</th>
                         <th>Contact Person</th>
                         <th>Email</th>
@@ -91,17 +91,17 @@
                         <th>Address</th>
                         <th>Created Date</th>
                     </tr>
+                    <%suppliers.forEach(supplier => {%>
                     <tr>
-                        <%suppliers.forEach(supplier => {%>
-                           <td><%=supplier.id%></td>
+                           <td><%=supplier.sno%></td>
                            <td><%=supplier.name%></td>
                            <td><%=supplier.contact_person%></td>
                            <td><%=supplier.email%></td>
                            <td><%=supplier.phone%></td>
                            <td><%=supplier.address%></td>
                            <td><%=new Date(supplier.created_at).toLocaleDateString("en-ca")%></td>
-                        <%});%>
                     </tr>
+                    <%});%>
                 </table>
             <%}%>
 
@@ -118,14 +118,14 @@
                         <div class="purchase-details">
                             <table>
                                 <tr class="table-header">
-                                    <th>ID</th>
+                                    <th>S.No.</th>
                                     <th>Supplier Name</th>
                                     <th>Total Purchase Amount</th>
                                     <th>Status</th>
                                 </tr>
                                 <tr>
                                     <%p_orders.forEach(order => {%>
-                                       <td><%=order.id%></td>
+                                       <td><%=order.sno%></td>
                                        <td><%=order.supplier_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
@@ -145,14 +145,14 @@
                         <div class="sales-details">
                             <table>
                                 <tr class="table-header">
-                                    <th>ID</th>
+                                    <th>S.No.</th>
                                     <th>Customer Name</th>
                                     <th>Total Sales Amount</th>
                                     <th>Status</th>
                                 </tr>
                                 <tr>
                                     <%s_orders.forEach(order => {%>
-                                       <td><%=order.id%></td>
+                                       <td><%=order.sno%></td>
                                        <td><%=order.customer_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
