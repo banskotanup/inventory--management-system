@@ -94,7 +94,7 @@ exports.supplierUpdateGet = async (req, res) => {
         supplier: await db.getSupplier(Number(id)),
         err: '',
     })
-}
+};
 
 exports.supplierUpdatePost = [
     validateSuppliers,
