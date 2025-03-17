@@ -15,3 +15,18 @@ exports.getPurchase = async () => {
         `)
     return rows;
 };
+
+exports.addPurchase = async (item, qty, unit_price, total_amount, supplier_name) => {
+    const supplierId = await pool.query(`SELECT id FROM suppliers WHERE name = $1`, [supplier_name]);
+    const supplier_id = supplierId.rows[0].id;
+
+    let itemId = await pool.query(`SELECT id FROM items WHERE name = $1`, [item]);
+    const item_id = itemId.rows[0].id;
+
+    await pool.query(`INSERT INTO purchase_order (supplier_id, total_amount) VALUEs ($1, $2)`, [supplier_id, total_amount]);
+
+    let poId = await pool.query(`SELECT id FROM purchase_order WHERE supplier_id = $1 AND total_amount = $2`, [supplier_id, total_amount]);
+    const po_id = poId.rows[0].id;
+
+    await pool.query(`INSERT INTO purchase_order_items (po_id, item_id, qty, unit_price) VALUES ($1, $2, $3, $4)`, [po_id, item_id, qty, unit_price]);
+};

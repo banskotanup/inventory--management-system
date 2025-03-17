@@ -25,7 +25,6 @@ exports.postSupplier = async (id, {name, contact_person, email, phone, address})
 };
 
 exports.deleteSupplier = async (id) => {
-    console.log(`DELETE FROM suppliers WHERE id = ${id}`);
     await pool.query(`DELETE FROM suppliers
             WHERE id = $1`,
         [id]

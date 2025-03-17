@@ -19,13 +19,13 @@
                     <h2>Purchase Order</h2>
                 </div>
                 <div class="right-sup">
-                    <a class="addSup" href="">Add new purchase</a>
+                    <a class="addSup" href="/purchase/add">Add new purchase</a>
                 </div>
             </div>
             <%if(locals.p_orders){%>
                 <table>
                     <tr class="table-header">
-                        <th>ID</th>
+                        <th>S.No.</th>
                         <th>Items</th>
                         <th>Qty</th>
                         <th>Unit Price</th>
@@ -35,9 +35,9 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
+                    <%p_orders.forEach(order => {%>
                     <tr>
-                        <%p_orders.forEach(order => {%>
-                           <td><%=order.id%></td>
+                           <td><%=order.sno%></td>
                            <td><%=order.item_name%></td>
                            <td><%=order.qty%></td>
                            <td><%=order.unit_price%></td>
@@ -53,8 +53,8 @@
                                 <button class="deleteBtn"  type="submit">Delete</button>
                             </form>
                            </td>
-                        <%});%>
                     </tr>
+                    <%});%>
                 </table>
             <%}%>
         </div>
