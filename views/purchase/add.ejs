@@ -23,7 +23,24 @@
             <form action="/purchase/add" method="post">
                 <div>
                     <label for="item">Item</label>
-                    <input type="text" name="item" id="item" required>
+                    <!-- <input type="text" name="item" id="item" required> -->
+                     <select name="item" id="item" required>
+                        <option value="" disabled selected>Select an items</option>
+                         <%if(locals.items){%>
+                            <%if(locals.categories){%>
+                                <%categories.forEach(category => {%>
+                                    <optgroup label="<%=category.category_name%>">
+                                        <%items.forEach(item =>{%>
+                                            <%if(category.id === item.category_id){%>
+                                                <option value="<%=item.name%>"><%=item.name%></option>
+                                            <%}%>
+                                        <%});%>
+                                    </optgroup>
+                                <%});%>
+                            <%}%>
+                         <%}%>
+                     </select>
+                     
                 </div>
                 <div>
                     <label for="qty">Qty</label>
@@ -40,7 +57,14 @@
                 </div>
                 <div>
                     <label for="supplier_name">Supplier Name</label>
-                    <input type="text" id="supplier_name" name="supplier_name" required >
+                    <select name="supplier_name" id="supplier_name">
+                        <option value="" disabled selected>Select suppliers</option>
+                        <%if(locals.suppliers){%>
+                            <%suppliers.forEach(supplier => {%>
+                                <option value="<%=supplier.name%>"><%=supplier.name%></option>
+                            <%});%>
+                        <%}%>
+                    </select>
                 </div>
                 <div><button type="submit">Submit</button></div>
             </form>
@@ -57,7 +81,7 @@
 
         btnCalc.addEventListener("click", ()=>{
             const total = (qty.value) * (unit_price.value);
-            total_amount.value = total;
+            total_amount.value = total.toFixed(2);
         });
 
     </script>

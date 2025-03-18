@@ -123,14 +123,14 @@
                                     <th>Total Purchase Amount</th>
                                     <th>Status</th>
                                 </tr>
+                                <%p_orders.forEach(order => {%>
                                 <tr>
-                                    <%p_orders.forEach(order => {%>
                                        <td><%=order.sno%></td>
                                        <td><%=order.supplier_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
-                                    <%});%>
                                 </tr>
+                                <%});%>
                             </table>
                         </div>
                     <%}%>
@@ -150,14 +150,14 @@
                                     <th>Total Sales Amount</th>
                                     <th>Status</th>
                                 </tr>
-                                <tr>
-                                    <%s_orders.forEach(order => {%>
+                                <%s_orders.forEach(order => {%>
+                                    <tr>
                                        <td><%=order.sno%></td>
                                        <td><%=order.customer_name%></td>
                                        <td><%=order.total_amount%></td>
                                        <td><%=order.status%></td>
-                                    <%});%>
-                                </tr>
+                                    </tr>
+                                <%});%>
                             </table>
                         </div>
                     <%}%>

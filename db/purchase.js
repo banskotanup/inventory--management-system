@@ -16,6 +16,21 @@ exports.getPurchase = async () => {
     return rows;
 };
 
+exports.getItems = async () => {
+    const { rows } = await pool.query(`SELECT name, category_id FROM items`);
+    return rows;
+};
+
+exports.getCategory = async () => {
+    const { rows } = await pool.query(`SELECT * FROM categories`);
+    return rows;
+};
+
+exports.getSuppliers = async () => {
+    const { rows } = await pool.query(`SELECT name FROM suppliers`);
+    return rows;
+};
+
 exports.addPurchase = async (item, qty, unit_price, total_amount, supplier_name) => {
     const supplierId = await pool.query(`SELECT id FROM suppliers WHERE name = $1`, [supplier_name]);
     const supplier_id = supplierId.rows[0].id;

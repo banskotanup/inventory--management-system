@@ -56,6 +56,17 @@
                     </tr>
                     <%});%>
                 </table>
+                <div class="pagination">
+                    <%if(hasPrev){%>
+                        <a href="?page=<%=currentPage - 1%>&limit=10" class="pagination-btn">Previous</a>
+                    <%}%>
+
+                    <span>Page <%=currentPage%> of <%=totalPage%></span>
+
+                    <%if(hasNext){%>
+                        <a href="?page=<%=currentPage + 1%>&limit=10" class="pagination-btn">Next</a>
+                    <%}%>
+                </div>
             <%}%>
         </div>
         <%-include("../footer.ejs")%>
