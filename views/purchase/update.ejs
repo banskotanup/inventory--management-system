@@ -66,6 +66,15 @@
                         <%}%>
                     </select>
                 </div>
+                <div>
+                    <label for="status">Status</label>
+                    <input type="radio" name="status" id="pending" required value="Pending"
+                    <% if(orders.status === 'Pending') {%> checked <%}%>>
+                    <label for="pending">Pending</label>
+                    <input type="radio" name="status" id="completed" required value="Completed"
+                    <% if(orders.status === 'Completed') {%> checked <%}%>>
+                    <label for="completed">Completed</label>
+                </div>
                 <div><button type="submit">Submit</button></div>
             </form>
             

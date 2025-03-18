@@ -37,8 +37,7 @@ body{
     display: grid;
     grid-template-columns: 30% 80%;
     column-gap: 20px;
-    background-color: #2E7D32;
-    color: #FFFFFF;
+    background-color: rgba(7, 73, 46, 0.295);
     height: 10%;
     position: -webkit-sticky;
     position: sticky;
@@ -69,16 +68,17 @@ body{
 .right-header a{
     text-decoration: none;
     font-size: 16px;
-    color: #FFFFFF;
+    color: black;
     margin-right: 10px;
+    font-weight: 600;
 }
 
 .right-header a:hover{
-    color: #c8f03a;
+    color: rgb(2, 104, 104);
 }
 
 .right-header a.active{
-    color: #b5dd24;
+    color: rgb(2, 104, 104);
 }
 
 .welcome-text{
@@ -217,14 +217,8 @@ hr {
     margin-right: 5%;
     justify-content: space-around;
     margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
 }
 
-.pro-cards{
-    background-image: url("/public/images/pro4.jpg");
-    width: 100%;
-}
 
 .card{
     display: flex;
@@ -233,14 +227,13 @@ hr {
     margin-top: 10px;
     margin-left: 5%;
     margin-bottom: 30px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(193, 255, 164, 0.2);
 }
 
 .card:hover{
     transform: scale(1.1);
-    background-color: #a8e7af;
+    background-color: rgba(193, 255, 164, 0.5);
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .img{

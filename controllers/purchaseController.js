@@ -57,8 +57,8 @@ exports.updatePurchaseGet = async (req, res) => {
 };
 
 exports.updatePurchasePost = async (req, res) => {
-    const { item, pOrder_id, qty, unit_price, total_amount, supplier_name } = req.body;
-    await db.updatePurchase(req.params.id, { item, pOrder_id, qty, unit_price, total_amount, supplier_name });
+    const { item, pOrder_id, qty, unit_price, total_amount, supplier_name, status } = req.body;
+    await db.updatePurchase(req.params.id, { item, pOrder_id, qty, unit_price, total_amount, supplier_name, status });
     res.redirect("/purchase");
 };
 

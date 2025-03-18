@@ -63,12 +63,12 @@ exports.getPurchaseOrder = async (id) => {
     return rows[0];
 };
 
-exports.updatePurchase = async (id, { item, pOrder_id, qty, unit_price, total_amount, supplier_name }) => {
+exports.updatePurchase = async (id, { item, pOrder_id, qty, unit_price, total_amount, supplier_name, status }) => {
     const supplierId = await pool.query(`SELECT id FROM suppliers WHERE name = $1`, [supplier_name]);
     const supplier_id = supplierId.rows[0].id;
 
     await pool.query(`UPDATE purchase_order SET supplier_id = $1,
-         total_amount = $2 WHERE id = $3`, [supplier_id, total_amount, pOrder_id]);
+         total_amount = $2, status = $3 WHERE id = $4`, [supplier_id, total_amount, status, pOrder_id]);
 
     const poId = await pool.query(`SELECT id FROM purchase_order WHERE supplier_id = $1 AND total_amount = $2`, [supplier_id, total_amount]);
     const po_id = poId.rows[0].id;
