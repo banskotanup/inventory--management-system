@@ -43,3 +43,27 @@ exports.addPurchasePost = async (req, res) => {
     await db.addPurchase(item, qty, unit_price, total_amount, supplier_name);
     res.redirect("/purchase");
 };
+
+exports.updatePurchaseGet = async (req, res) => {
+    const { id } = req.params;
+
+    res.render("./purchase/update", {
+        title: "Update Purchase",
+        orders: await db.getPurchaseOrder(Number(id)),
+        categories: await db.getCategory(),
+        items: await db.getItems(),
+        suppliers: await db.getSuppliers(),
+    });
+};
+
+exports.updatePurchasePost = async (req, res) => {
+    const { item, pOrder_id, qty, unit_price, total_amount, supplier_name } = req.body;
+    await db.updatePurchase(req.params.id, { item, pOrder_id, qty, unit_price, total_amount, supplier_name });
+    res.redirect("/purchase");
+};
+
+exports.deletePurchase = async (req, res) => {
+    const id = req.params.id;
+    await db.deletePurchase(id);
+    res.redirect("/purchase");
+};

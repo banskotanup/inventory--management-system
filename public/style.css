@@ -217,6 +217,13 @@ hr {
     margin-right: 5%;
     justify-content: space-around;
     margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.pro-cards{
+    background-image: url("/public/images/pro4.jpg");
+    width: 100%;
 }
 
 .card{
@@ -226,13 +233,14 @@ hr {
     margin-top: 10px;
     margin-left: 5%;
     margin-bottom: 30px;
-    background-color: #dff3e1;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .card:hover{
     transform: scale(1.1);
     background-color: #a8e7af;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .img{
@@ -290,6 +298,16 @@ hr {
     display: grid;
     grid-template-columns: 50% 50%;
     text-align: center;
+    background-image: url("/public/images/im2-.jpg");
+}
+
+.left-intro{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.right-intro{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .right-intro span{

@@ -14,14 +14,16 @@
     <div class="wrapper">
         <%-include("../header.ejs")%>
         <div class="main">
-            <div class="welcome-text">
-                <h3>Welcome to Inventory Software System</h3>
+            <div class="int-img">
+                <div class="welcome-text">
+                    <h3>Welcome to Inventory Software System</h3>
+                </div>
             </div>
             <hr>
 
             <div class="intro">
                 <div class="left-intro">
-                    <img src="/public/images/intro.png" alt="">
+                    <img src="/public/images/im.png" alt="">
                 </div>
                 <div class="right-intro">
                     <h3>Inventory <span>Software System</span></h3>
@@ -55,24 +57,27 @@
                     <h2>Featured <span class="it-pro">Products</span></h2>
                 </div>
             </div>
-            <%if(locals.items){%>
-                <div class="cards">
-                    <%items.forEach(item => {%>
-                        <div class="card">
-                            <div class="img">
-                                <img src="../public//images/img.jpeg" alt="">
+            <hr>
+            <div class="pro-cards">
+                <%if(locals.items){%>
+                    <div class="cards">
+                        <%items.forEach(item => {%>
+                            <div class="card">
+                                <div class="img">
+                                    <img src="../public//images/img.jpeg" alt="">
+                                </div>
+                                <div class="item-desc">
+                                    <p><span>Name:</span> <%=item.name%></p>
+                                    <p><span>Description:</span> <%=item.description%></p>
+                                    <p><span>Category Name:</span> <%=item.category_name%></p>
+                                    <p><span>Unit Price:</span> <%=item.unit_price%></p>
+                                    <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
+                                </div>
                             </div>
-                            <div class="item-desc">
-                                <p><span>Name:</span> <%=item.name%></p>
-                                <p><span>Description:</span> <%=item.description%></p>
-                                <p><span>Category Name:</span> <%=item.category_name%></p>
-                                <p><span>Unit Price:</span> <%=item.unit_price%></p>
-                                <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
-                            </div>
-                        </div>
-                    <%});%>
-                </div>
-            <%}%>
+                        <%});%>
+                    </div>
+                <%}%>
+            </div>
             <hr>
 
             <div class="sup_header" style="justify-content: center;">

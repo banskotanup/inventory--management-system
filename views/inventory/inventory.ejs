@@ -19,24 +19,26 @@
                     <h2>Our <span class="it-pro">Inventory</span></h2>
                 </div>
             </div>
-            <%if(locals.items){%>
-                <div class="cards">
-                    <%items.forEach(item => {%>
-                        <div class="card">
-                            <div class="img">
-                                <img src="../public//images/img.jpeg" alt="">
+            <div class="pro-cards">
+                <%if(locals.items){%>
+                    <div class="cards">
+                        <%items.forEach(item => {%>
+                            <div class="card">
+                                <div class="img">
+                                    <img src="../public//images/img.jpeg" alt="">
+                                </div>
+                                <div class="item-desc">
+                                    <p><span>Name:</span> <%=item.name%></p>
+                                    <p><span>Description:</span> <%=item.description%></p>
+                                    <p><span>Category Name:</span> <%=item.category_name%></p>
+                                    <p><span>Unit Price:</span> <%=item.unit_price%></p>
+                                    <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
+                                </div>
                             </div>
-                            <div class="item-desc">
-                                <p><span>Name:</span> <%=item.name%></p>
-                                <p><span>Description:</span> <%=item.description%></p>
-                                <p><span>Category Name:</span> <%=item.category_name%></p>
-                                <p><span>Unit Price:</span> <%=item.unit_price%></p>
-                                <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
-                            </div>
-                        </div>
-                    <%});%>
-                </div>
-            <%}%>
+                        <%});%>
+                    </div>
+                <%}%>
+            </div>
         </div>
         <%-include("../footer.ejs")%>
     </div>

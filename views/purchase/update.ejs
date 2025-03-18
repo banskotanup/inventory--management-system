@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+10&family=Jersey+15&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../public/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/public/images/logo.png" type="image/x-icon">
     <title><%=title%></title>
 </head>
 <body>
@@ -16,15 +16,15 @@
         <div class="main">
             <div class="sup_header">
                 <div class="left-sup">
-                    <h2>Add Purchase</h2>
+                    <h2>Update Purchase</h2>
                 </div>
             </div>
 
-            <form action="/purchase/add" method="post">
+            <form action="/purchase/<%=orders.id%>/update" method="post">
                 <div>
                     <label for="item">Item</label>
                      <select name="item" id="item" required>
-                        <option value="" disabled selected>Select an items</option>
+                        <option value="<%=orders.item_name%>" selected><%=orders.item_name%></option>
                          <%if(locals.items){%>
                             <%if(locals.categories){%>
                                 <%categories.forEach(category => {%>
@@ -41,23 +41,24 @@
                      </select>
                      
                 </div>
+                <input type="text" name="pOrder_id" id="pOrder_id" hidden value="<%=orders.po_id%>">
                 <div>
                     <label for="qty">Qty</label>
-                    <input type="text" name="qty" id="qty" required>
+                    <input type="text" name="qty" id="qty" required value="<%=orders.qty%>">
                 </div>
                 <div>
                     <label for="unit_price">Unit Price</label>
-                    <input type="text" id="unit_price" name="unit_price" required>
+                    <input type="text" id="unit_price" name="unit_price" required value="<%=orders.unit_price%>">
                     <button type="button" id="btnCalc">Calculate Total</button>
                 </div>
                 <div>
                     <label for="total_amount">Total Amount</label>
-                    <input type="text" id="total_amount" name="total_amount" value="" required readonly>
+                    <input type="text" id="total_amount" name="total_amount" value="<%=orders.total_amount%>" required readonly>
                 </div>
                 <div>
                     <label for="supplier_name">Supplier Name</label>
                     <select name="supplier_name" id="supplier_name">
-                        <option value="" disabled selected>Select suppliers</option>
+                        <option value="<%=orders.supplier_name%>" selected><%=orders.supplier_name%></option>
                         <%if(locals.suppliers){%>
                             <%suppliers.forEach(supplier => {%>
                                 <option value="<%=supplier.name%>"><%=supplier.name%></option>
