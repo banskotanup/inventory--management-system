@@ -19,13 +19,13 @@
                     <h2>Sales Order</h2>
                 </div>
                 <div class="right-sup">
-                    <a class="addSup" href="">Add new sales</a>
+                    <a class="addSup" href="/sales/add">Add new sales</a>
                 </div>
             </div>
             <%if(locals.s_orders){%>
                 <table>
                     <tr class="table-header">
-                        <th>ID</th>
+                        <th>S. No.</th>
                         <th>Customer Name</th>
                         <th>Items</th>
                         <th>Qty</th>
@@ -35,9 +35,9 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
+                    <%s_orders.forEach(order => {%>
                     <tr>
-                        <%s_orders.forEach(order => {%>
-                            <td><%=order.id%></td>
+                            <td><%=order.sno%></td>
                             <td><%=order.customer_name%></td>
                            <td><%=order.item_name%></td>
                            <td><%=order.qty%></td>
@@ -46,16 +46,27 @@
                            <td><%=new Date(order.order_date).toLocaleDateString("en-ca")%></td>
                            <td><%=order.status%></td>
                            <td>
-                            <form action="">
+                            <form action="/sales/<%=order.id%>/update" method="get">
                                 <button class="updateBtn" type="submit">Update</button>
                             </form>
-                            <form action="">
+                            <form action="/sales/<%=order.id%>/delete" method="post">
+                                <input type="text" name="so_id" id="so_id" hidden value="<%=order.so_id%>">
                                 <button class="deleteBtn"  type="submit">Delete</button>
                             </form>
                            </td>
-                        <%});%>
                     </tr>
+                    <%});%>
                 </table>
+
+                <div class="pagination">
+                    <%if(hasPrev){%>
+                        <a href="?page=<%=currentPage - 1%>&limit=10" class="pagination-btn">Previous</a>
+                    <%}%>
+                    <span>Page <%=currentPage%> of <%=totalPage%></span>
+                    <%if(hasNext){%>
+                        <a href="?page=<%=currentPage + 1%>&limit=10" class="pagination-btn">Next</a>
+                    <%}%>
+                </div>
             <%}%>
         </div>
         <%-include("../footer.ejs")%>

@@ -39,7 +39,7 @@ exports.addPurchase = async (item, qty, unit_price, total_amount, supplier_name)
     let itemId = await pool.query(`SELECT id FROM items WHERE name = $1`, [item]);
     const item_id = itemId.rows[0].id;
 
-    await pool.query(`INSERT INTO purchase_order (supplier_id, total_amount) VALUEs ($1, $2)`, [supplier_id, total_amount]);
+    await pool.query(`INSERT INTO purchase_order (supplier_id, total_amount) VALUES ($1, $2)`, [supplier_id, total_amount]);
 
     let poId = await pool.query(`SELECT id FROM purchase_order WHERE supplier_id = $1 AND total_amount = $2`, [supplier_id, total_amount]);
     const po_id = poId.rows[0].id;
