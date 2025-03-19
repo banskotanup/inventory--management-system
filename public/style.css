@@ -335,8 +335,79 @@ hr {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .pagination-btn:hover {
     background-color: #0056b3;
 }
+
+.form-group{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    font-weight: 700;
+}
+
+input, select{
+    height: 30px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+#form-group>label{
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+label span{
+    color: red;
+}
+
+.form-group button{
+    height: 30px;
+    background-color: rgba(7, 73, 46, 0.2);
+    border-radius: 10px;
+    width: 5%;
+    cursor: pointer;
+}
+
+.form-group button:hover{
+    background-color: rgba(7, 73, 46, 0.5);
+    transform: scale(1.1);
+}
+
+.main-card{
+    background-color: rgba(130, 184, 161, 0.2);
+    padding: 10px;
+    margin: 20px;
+    padding-left: 15px;
+}
+
+#unit_price{
+    width: 90%;
+}
+
+#btnCalc{
+    width: 8%;
+    margin: 7px;
+    margin-left: 9px;
+    background-color:  rgba(63, 163, 121, 0.2);
+    cursor: pointer;
+}
+
+#btnCalc:hover{
+    background-color:  rgba(63, 163, 121, 0.5);
+    transform: scale(1.1);
+}
+
+
+#form-group{
+    display: flex;
+    flex-direction: row;
+}
+
