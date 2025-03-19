@@ -160,6 +160,19 @@ tr:nth-child(even) {
     background-color: #8f0101;
 }
 
+.viewDtlBtn{
+    color: #fafafa; 
+    background-color: #5b64dd;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.viewDtlBtn:hover{
+    background-color: #2d3277;
+}
+
 .sup_header{
     display: inline-flex;
     width: 100%;
@@ -411,3 +424,56 @@ label span{
     flex-direction: row;
 }
 
+input[type="radio"].readonly{
+    pointer-events: none;
+}
+
+label.readonly{
+    pointer-events: none;
+}
+
+#delete-popover{
+    height: 200px;
+    width: 300px;
+    background-color: rgba(30, 61, 49, 0.9);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    
+}
+
+#delete-popover p{
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 10%;
+}
+
+#delete-popover button{
+    text-align: center;
+}
+
+.subBtn{
+    background-color: rgb(87, 87, 172);
+    color: white;
+    height: 30px;
+    width: 70px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.subBtn:hover{
+    background-color: rgb(44, 44, 136);
+}
+
+.cancelBtn{
+    background-color: rgb(212, 86, 86);
+    color: white;
+    height: 30px;
+    width: 70px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.cancelBtn:hover{
+    background-color: rgb(161, 32, 32);
+}

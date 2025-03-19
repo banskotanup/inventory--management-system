@@ -22,7 +22,7 @@
                 </div>
                 <form action="/purchase/add" method="post">
                     <div class="form-group">
-                        <label for="item">Item</label>
+                        <label for="item">Item <span>*</span></label>
                          <select name="item" id="item" required>
                             <option value="" disabled selected>Select an items</option>
                              <%if(locals.items){%>
@@ -42,11 +42,11 @@
                 
                     </div>
                     <div class="form-group">
-                        <label for="qty">Qty</label>
+                        <label for="qty">Qty <span>*</span></label>
                         <input type="text" name="qty" id="qty" required>
                     </div>
                     <div class="form-group">
-                        <label for="unit_price">Unit Price</label>
+                        <label for="unit_price">Unit Price <span>*</span></label>
                         <div id="form-group">
                             <input type="text" id="unit_price" name="unit_price" required>
                             <button type="button" id="btnCalc">Calculate Total</button>
@@ -57,8 +57,8 @@
                         <input type="text" id="total_amount" name="total_amount" value="" required readonly>
                     </div>
                     <div class="form-group">
-                        <label for="supplier_name">Supplier Name</label>
-                        <select name="supplier_name" id="supplier_name">
+                        <label for="supplier_name">Supplier Name <span>*</span></label>
+                        <select name="supplier_name" id="supplier_name" required>
                             <option value="" disabled selected>Select suppliers</option>
                             <%if(locals.suppliers){%>
                                 <%suppliers.forEach(supplier => {%>

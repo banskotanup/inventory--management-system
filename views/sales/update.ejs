@@ -8,72 +8,122 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+10&family=Jersey+15&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/public/images/logo.png" type="image/x-icon">
-    <title><%=title%></title>
+    <title><%if(orders.status === 'Pending'){%> <%=title%> <%};%> <%if(orders.status === 'Completed'){%> Sales History <%};%></title>
 </head>
 <body>
     <div class="wrapper">
         <%-include("../header.ejs")%>
         <div class="main">
             <div class="main-card">
-                <div class="sup_header">
-                    <div class="left-sup">
-                        <h2>Update Sales</h2>
-                    </div>
-                </div>
-                <form action="/sales/<%=orders.id%>/update" method="post">
-                    <div class="form-group">
-                        <label for="customer_name">Customer Name</label>
-                        <input type="text" name="customer_name" id="customer_name" required value="<%=orders.customer_name%>">
-                    </div>
-                    <div class="form-group">
-                        <label for="item">Item</label>
-                         <select name="item" id="item" required>
-                            <option value="<%=orders.item_name%>" selected><%=orders.item_name%></option>
-                             <%if(locals.items){%>
-                                <%if(locals.categories){%>
-                                    <%categories.forEach(category => {%>
-                                        <optgroup label="<%=category.category_name%>">
-                                            <%items.forEach(item =>{%>
-                                                <%if(category.id === item.category_id){%>
-                                                    <option value="<%=item.name%>"><%=item.name%></option>
-                                                <%}%>
-                                            <%});%>
-                                        </optgroup>
-                                    <%});%>
-                                <%}%>
-                             <%}%>
-                         </select>
-                
-                    </div>
-                    <input type="text" name="so_id" id="so_id" hidden value="<%=orders.so_id%>">
-                    <div class="form-group">
-                        <label for="qty">Qty</label>
-                        <input type="text" name="qty" id="qty" required value="<%=orders.qty%>">
-                    </div>
-                    <div class="form-group">
-                        <label for="unit_price">Unit Price</label>
-                        <div id="form-group">
-                            <input type="text" id="unit_price" name="unit_price" required value="<%=orders.unit_price%>">
-                            <button type="button" id="btnCalc">Calculate Total</button>
+                <%if(orders.status === 'Pending'){%>
+                    <div class="sup_header">
+                        <div class="left-sup">
+                            <h2>Update Sales</h2>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="total_amount">Total Amount</label>
-                        <input type="text" id="total_amount" name="total_amount" value="<%=orders.total_amount%>" required readonly>
-                    </div>
-                    <div class="form-group">
-                        <div><label for="status" style="font-weight: bold;">Status</label></div>
-                        <div id="form-group">
-                            <input type="radio" name="status" id="pending" required value="Pending"
-                            <% if(orders.status === 'Pending') {%> checked <%}%>>
-                            <label for="pending">Pending</label>
-                            <input type="radio" name="status" id="completed" required value="Completed"
-                            <% if(orders.status === 'Completed') {%> checked <%}%>>
-                            <label for="completed">Completed</label>
+                    <form action="/sales/<%=orders.id%>/update" method="post">
+                        <div class="form-group">
+                            <label for="customer_name">Customer Name <span>*</span></label>
+                            <input type="text" name="customer_name" id="customer_name" required value="<%=orders.customer_name%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="item">Item <span>*</span></label>
+                             <select name="item" id="item" required>
+                                <option value="<%=orders.item_name%>" selected><%=orders.item_name%></option>
+                                 <%if(locals.items){%>
+                                    <%if(locals.categories){%>
+                                        <%categories.forEach(category => {%>
+                                            <optgroup label="<%=category.category_name%>">
+                                                <%items.forEach(item =>{%>
+                                                    <%if(category.id === item.category_id){%>
+                                                        <option value="<%=item.name%>"><%=item.name%></option>
+                                                    <%}%>
+                                                <%});%>
+                                            </optgroup>
+                                        <%});%>
+                                    <%}%>
+                                 <%}%>
+                             </select>
+                    
+                        </div>
+                        <input type="text" name="so_id" id="so_id" hidden value="<%=orders.so_id%>">
+                        <div class="form-group">
+                            <label for="qty">Qty <span>*</span></label>
+                            <input type="text" name="qty" id="qty" required value="<%=orders.qty%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="unit_price">Unit Price <span>*</span></label>
+                            <div id="form-group">
+                                <input type="text" id="unit_price" name="unit_price" required value="<%=orders.unit_price%>">
+                                <button type="button" id="btnCalc">Calculate Total</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="total_amount">Total Amount</label>
+                            <input type="text" id="total_amount" name="total_amount" value="<%=orders.total_amount%>" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <div><label for="status" style="font-weight: bold;">Status</label></div>
+                            <div id="form-group">
+                                <input type="radio" name="status" id="pending" required value="Pending"
+                                <% if(orders.status === 'Pending') {%> checked <%}%>>
+                                <label for="pending">Pending</label>
+                                <input type="radio" name="status" id="completed" required value="Completed"
+                                <% if(orders.status === 'Completed') {%> checked <%}%>>
+                                <label for="completed">Completed</label>
+                            </div>
+                        </div>
+                        <div class="form-group"><button type="submit">Submit</button></div>
+                    </form>
+                <%}%>
+                <%if(orders.status === 'Completed') {%>
+                    <div class="sup_header">
+                        <div class="left-sup">
+                            <h2>Sales Details</h2>
                         </div>
                     </div>
-                    <div class="form-group"><button type="submit">Submit</button></div>
-                </form>
+                    <form action="/sales" method="get">
+                        <div class="form-group">
+                            <label for="customer_name">Customer Name</label>
+                            <input type="text" name="customer_name" id="customer_name" required value="<%=orders.customer_name%>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="item">Item</label>
+                             <select name="item" id="item" required>
+                                <option value="<%=orders.item_name%>" disabled selected><%=orders.item_name%></option>
+                             </select>
+                    
+                        </div>
+                        <input type="text" name="so_id" id="so_id" hidden value="<%=orders.so_id%>">
+                        <div class="form-group">
+                            <label for="qty">Qty</label>
+                            <input type="text" name="qty" id="qty" required value="<%=orders.qty%>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit_price">Unit Price</label>
+                            <div id="form-group">
+                                <input type="text" id="unit_price" name="unit_price" required value="<%=orders.unit_price%>" readonly>
+                                <button type="button" id="btnCalc" disabled style="color: white;">Calculate Total</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="total_amount">Total Amount</label>
+                            <input type="text" id="total_amount" name="total_amount" value="<%=orders.total_amount%>" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <div><label for="status" style="font-weight: bold;">Status</label></div>
+                            <div id="form-group">
+                                <input class="readonly" type="radio" name="status" id="pending" required value="Pending"
+                                <% if(orders.status === 'Pending') {%> checked <%}%>>
+                                <label class="readonly" for="pending">Pending</label>
+                                <input class="readonly" type="radio" name="status" id="completed" required value="Completed"
+                                <% if(orders.status === 'Completed') {%> checked <%}%>>
+                                <label class="readonly" for="completed">Completed</label>
+                            </div>
+                        </div>
+                        <div class="form-group"><button type="submit">Go back</button></div>
+                    </form>
+                <%}%>
             </div>
             
         </div>
