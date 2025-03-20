@@ -145,7 +145,7 @@ exports.supplierUpdatePost = [
 exports.deleteSupplier = async (req, res) => {
     const id = req.params.id;
     try {
-        db.deleteSupplier(id);
+        await db.deleteSupplier(id);
         res.redirect("/suppliers");
     } catch (error) {
         res.send("Something went wrong.");
