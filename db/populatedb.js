@@ -96,11 +96,11 @@ const SQL = `
 async function main() {
     console.log("seeding...");
     const client = new Client({
-        DB_HOST:"dpg-cveq67popnds73ehimng-a",
-        DB_USER: "imsdb_y0cr_user",
-        DB_DATABASE: "imsdb_y0cr",
-        DB_PASSWORD: "5gLYxSYC8BC7Ab6Ew77Bku76zRgxQVHR",
-        DB_PORT: 5432,
+        host:"dpg-cveq67popnds73ehimng-a",
+        user: "imsdb_y0cr_user",
+        database: "imsdb_y0cr",
+        password: "5gLYxSYC8BC7Ab6Ew77Bku76zRgxQVHR",
+        port: 5432,
     });
     await client.connect();
     await client.query(SQL);
