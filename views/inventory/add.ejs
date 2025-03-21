@@ -21,13 +21,13 @@
                              <textarea name="desc" id="desc" rows="10"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="itemImages">Image</label>
+                            <label for="itemImages">Image <span>*</span></label>
                             <input type="file" name="item_image" id="item-image" accept="image/*" required>
                         </div>
                         <div class="form-group">
                             <label for="category_name">Category Name <span>*</span></label>
                              <select name="category_name" id="category_name" required>
-                                <option value="<%=category.category_name%>" selected disabled>Select category</option>
+                                <option value="" selected disabled>Select category</option>
                                 <%category.forEach(cat=>{%>
                                     <option value="<%=cat.category_name%>"><%=cat.category_name%></option>
                                 <%});%>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="supplier_name">Supplier Name <span>*</span></label>
                              <select name="supplier_name" id="supplier_name" required>
-                                <option value="<%=suppliers.name%>" selected disabled>Select suppliers</option>
+                                <option value="" selected disabled>Select suppliers</option>
                                 <%suppliers.forEach(supplier=>{%>
                                     <option value="<%=supplier.name%>"><%=supplier.name%></option>
                                 <%});%>

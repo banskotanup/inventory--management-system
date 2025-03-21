@@ -527,11 +527,12 @@ label.readonly{
     margin-top: 15px;
 }
 
-#itemUpdate{
+.itemUpdate{
     width: 50vw;
+    height: 100vh;
 }
 
-#itemUpdate>main>.main-card>hr {
+.itemUpdate>main>.main-card>hr {
     border: 1px solid #81C784; 
     width: 100%; 
     margin-top: 2px;
@@ -597,6 +598,7 @@ label.readonly{
 
 #itemAdd{
     width: 50vw;
+    height: 100vh;
 }
 
 #itemAdd>main>.main-card>hr {
@@ -630,4 +632,17 @@ label.readonly{
 
 #itemAddCategory{
     width: 50vw;
+}
+
+.upImg{
+    height: 100px;
+    width: 100px;
+    border-radius: 20%;
+}
+
+.img-div{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
 }

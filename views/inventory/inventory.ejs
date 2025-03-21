@@ -53,10 +53,10 @@
                                     <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
                                 </div>
                                 <div class="itemBtns">
-                                  <form action="" method="">
-                                    <button class="itemUpdateBtn" type="button" popovertarget="itemUpdate"><i class="fas fa-edit"></i></button>
+                                  <form action="/inventory/<%=item.id%>/update" method="get">
+                                    <button class="itemUpdateBtn" type="button" popovertarget="itemUpdate-<%=item.id%>" onclick="updateItem('<%=item.id%>')"><i class="fas fa-edit"></i></button>
                                   </form>
-                                    <form id="delete-form" action="" method="">
+                                    <form id="delete-form" action="/inventory/<%=item.id%>/delete" method="post">
                                         <button class="itemDeleteBtn" type="button" popovertarget="delete-popover"><i class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </div>
