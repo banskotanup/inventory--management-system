@@ -15,6 +15,8 @@ app.use((req, res, next) => {
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public"));
+app.use("/uploads", express.static("public/uploads"));
+
 app.use("/", indexRouter);
 app.use("/suppliers", suppliersRouter);
 app.use("/inventory", inventoryRouter);

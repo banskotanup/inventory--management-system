@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/style.css">
+    <link rel="stylesheet" href="/public/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+10&family=Jersey+15&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../public/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="/public/images/logo.png" type="image/x-icon">
     <title><%=title%></title>
 </head>
 <body>
     <div class="wrapper">
         <%-include("../header.ejs")%>
         <div class="main">
-            <div class="item-header">
-                <div class="item-header">
-                    <h2>Our <span class="it-pro">Inventory</span></h2>
+            <div class="inv-page">
+                <div class="invHead">
+                    <div class="item-header">
+                        <h2>Our <span class="it-pro">Inventory</span></h2>
+                    </div>
+                </div>
+
+                <div class="invHeadMid">
+                    <p><script>document.write(new Date().toString())</script></p>
+                </div>
+
+                <div class="invBtn">
+                    <form action="">
+                        <button class="addCatBtn" type="button" popovertarget="itemAddCategory">Add category</button>
+                    </form>
+                    <form action="">
+                        <button class="addItemBtn" type="button" popovertarget="itemAdd">Add items</button>
+                    </form>
                 </div>
             </div>
+
+            <hr>
             <div class="pro-cards">
                 <%if(locals.items){%>
                     <div class="cards">
                         <%items.forEach(item => {%>
                             <div class="card">
                                 <div class="img">
-                                    <img src="../public//images/img.jpeg" alt="">
+                                    <img src="<%=item.item_image%>" alt="">
                                 </div>
                                 <div class="item-desc">
                                     <p><span>Name:</span> <%=item.name%></p>
@@ -33,6 +51,14 @@
                                     <p><span>Category Name:</span> <%=item.category_name%></p>
                                     <p><span>Unit Price:</span> <%=item.unit_price%></p>
                                     <p><span>Qty in Stock:</span> <%=item.qty_in_stock%></p>
+                                </div>
+                                <div class="itemBtns">
+                                  <form action="" method="">
+                                    <button class="itemUpdateBtn" type="button" popovertarget="itemUpdate"><i class="fas fa-edit"></i></button>
+                                  </form>
+                                    <form id="delete-form" action="" method="">
+                                        <button class="itemDeleteBtn" type="button" popovertarget="delete-popover"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         <%});%>
@@ -42,6 +68,15 @@
         </div>
         <%-include("../footer.ejs")%>
     </div>
-
+    <div id="delete-popover" popover>
+        <h3>Confirm Delete</h3>
+        <hr>
+        <p>Are you sure you want to delete?</p>
+        <button class="subBtn" onclick="document.getElementById('delete-form').submit()">Yes</button>
+        <button class="cancelBtn" onclick="document.getElementById('delete-popover').hidePopover()">Cancel</button>
+    </div>
+    <%-include("./add_category.ejs")%>
+    <%-include("./add.ejs")%>
+    <%-include("./update.ejs")%>
 </body>
 </html>

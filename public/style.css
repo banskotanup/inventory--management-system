@@ -229,15 +229,15 @@ hr {
     margin-left: 5%;
     margin-right: 5%;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 
 .card{
     display: flex;
     flex-direction: column;
-    height: 60vh;
-    margin-top: 10px;
+    height: 70vh;
+    margin-top: 20px;
     margin-left: 5%;
     margin-bottom: 30px;
     background-color: rgba(193, 255, 164, 0.2);
@@ -365,6 +365,10 @@ label{
     font-weight: 700;
 }
 
+textarea{
+    margin-top: 5px;
+}
+
 input, select{
     height: 30px;
     margin-top: 5px;
@@ -476,4 +480,154 @@ label.readonly{
 
 .cancelBtn:hover{
     background-color: rgb(161, 32, 32);
+}
+
+.addCatBtn{
+    color: #fafafa; 
+    background-color: #4b8863;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+}
+
+.addCatBtn:hover{
+    background-color: #0b2e19;
+}
+
+.addItemBtn{
+    color: #fafafa; 
+    background-color: #0b9635;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+}
+
+.addItemBtn:hover{
+    background-color: #043b15;
+}
+
+.inv-page{
+    display: flex;
+    justify-content: space-between;
+}
+
+.invHeadMid{
+    color: red;
+    font-size: 16px;
+    margin-left: 8%;
+}
+
+.invBtn{
+    display: flex;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+#itemUpdate{
+    width: 50vw;
+}
+
+#itemUpdate>main>.main-card>hr {
+    border: 1px solid #81C784; 
+    width: 100%; 
+    margin-top: 2px;
+}
+
+#itemUpdateBtn{
+    height: 30px;
+    background-color: rgba(7, 73, 46, 0.2);
+    width: 8%;
+    cursor: pointer;
+}
+
+#unit_price{
+    width: 100%;
+}
+
+.itemBtns{
+    display: flex;
+    gap: 3px;
+    justify-content: end;
+    margin-right: 10%;
+}
+
+.itemBtns form button{
+    width: 50px;
+    height: 30px;
+}
+
+.itemUpdateBtn{
+    background-color: #0b9606;
+    border-radius: 7px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.fa-edit{
+    color: white;
+}
+
+.itemUpdateBtn:hover{
+    background-color: #0c310a;
+}
+
+.itemDeleteBtn{
+    background-color: rgb(177, 41, 41);
+    border-radius: 7px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.fa-trash{
+    color: white;
+}
+
+.itemDeleteBtn:hover{
+    background-color: rgb(104, 15, 15);
+}
+
+#itemUpdateBtn:hover{
+    background-color: rgba(7, 73, 46, 0.5);
+}
+
+
+#itemAdd{
+    width: 50vw;
+}
+
+#itemAdd>main>.main-card>hr {
+    border: 1px solid #81C784; 
+    width: 100%; 
+    margin-top: 2px;
+}
+
+#itemUpdateBtn{
+    height: 30px;
+    background-color: rgba(7, 73, 46, 0.2);
+    width: 8%;
+    cursor: pointer;
+}
+
+#unit_price{
+    width: 100%;
+}
+
+.itemBtns{
+    display: flex;
+    gap: 3px;
+    justify-content: end;
+    margin-right: 10%;
+}
+
+.itemBtns form button{
+    width: 50px;
+    height: 30px;
+}
+
+#itemAddCategory{
+    width: 50vw;
 }

@@ -1,0 +1,40 @@
+<div id="itemUpdate" popover>
+    <div class="main">
+            <div class="main-card">
+                    <div class="sup_header">
+                        <div class="left-sup">
+                            <h2>Update Items</h2>
+                        </div>
+                    </div>
+                    <hr>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="customer_name">Name <span>*</span></label>
+                            <input type="text" name="name" id="name" required value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="item">Description <span>*</span></label>
+                             <textarea name="desc" id="desc" rows="10"></textarea>
+                    
+                        </div>
+                        <div class="form-group">
+                            <label for="item">Category Name <span>*</span></label>
+                             <select name="item" id="item" required>
+                                
+                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Qty <span>*</span></label>
+                            <input type="text" name="qty" id="qty" required value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="unit_price">Unit Price <span>*</span></label>
+                            <div id="form-group">
+                                <input type="text" id="unit_price" name="unit_price" required value="">
+                            </div>
+                        </div>
+                        <div class="form-group"><button type="submit" id="itemUpdateBtn">Update</button></div>
+                    </form>
+            </div>
+    </div>
+</div>

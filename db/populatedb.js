@@ -30,6 +30,7 @@ const SQL = `
         name VARCHAR (255) UNIQUE NOT NULL,
         sku VARCHAR (255) UNIQUE NOT NULL,
         description VARCHAR (255),
+        item_image TEXT,
         category_id INT,
         supplier_id INT,
         unit_price DECIMAL(10, 2) CHECK (unit_price > 0),
@@ -39,8 +40,8 @@ const SQL = `
         FOREIGN KEY (supplier_id) REFERENCES suppliers(id) ON DELETE SET NULL
     );
 
-    INSERT INTO items (name, sku, description, category_id, supplier_id, unit_price, qty_in_stock)
-    VALUES ('Cricket Bat', 'cb123', 'This is cricket bat.', 1, 1, 1000, 50);
+    INSERT INTO items (name, sku, description, item_image, category_id, supplier_id, unit_price, qty_in_stock)
+    VALUES ('Cricket Bat', 'cb123', 'This is cricket bat.', , 1, 1, 1000, 50);
 
     CREATE TABLE purchase_order(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
