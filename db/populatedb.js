@@ -41,7 +41,7 @@ const SQL = `
     );
 
     INSERT INTO items (name, sku, description, item_image, category_id, supplier_id, unit_price, qty_in_stock)
-    VALUES ('Cricket Bat', 'cb123', 'This is cricket bat.', , 1, 1, 1000, 50);
+    VALUES ('Cricket Bat', 'cb123', 'This is cricket bat.', NULL, 1, 1, 1000, 50);
 
     CREATE TABLE purchase_order(
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -100,7 +100,7 @@ async function main() {
         user: "imsdb_y0cr_user",
         database: "imsdb_y0cr",
         password: "5gLYxSYC8BC7Ab6Ew77Bku76zRgxQVHR",
-        port: 5432,
+        port: 5432
     });
     await client.connect();
     await client.query(SQL);
