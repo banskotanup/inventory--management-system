@@ -60,8 +60,14 @@ exports.updateSales = async (id, { customer_name, item, so_id, qty, unit_price, 
             WHERE id = $4
         `, [customer_name, total_amount, status, so_id]);
     
-    const itemId = await pool.query(`SELECT id FROM items WHERE name = $1`, [item]);
+    const itemId = await pool.query(`SELECT * FROM items WHERE name = $1`, [item]);
     const item_id = itemId.rows[0].id;
+    const availableQty = itemId.rows[0].qty_in_stock;
+    const finalQty = parseInt(availableQty) - parseInt(qty);
+
+    if (status === 'Completed') {
+        await pool.query(`UPDATE items SET qty_in_stock = $1 WHERE id = $2`, [finalQty, item_id]);
+    };
 
     await pool.query(`UPDATE sales_order_items
             SET so_id = $1,

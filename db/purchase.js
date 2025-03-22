@@ -36,8 +36,9 @@ exports.addPurchase = async (item, qty, unit_price, total_amount, supplier_name)
     const supplierId = await pool.query(`SELECT id FROM suppliers WHERE name = $1`, [supplier_name]);
     const supplier_id = supplierId.rows[0].id;
 
-    let itemId = await pool.query(`SELECT id FROM items WHERE name = $1`, [item]);
+    let itemId = await pool.query(`SELECT * FROM items WHERE name = $1`, [item]);
     const item_id = itemId.rows[0].id;
+    const availableQty = itemId.rows[0].qty_in_stock;
 
     await pool.query(`INSERT INTO purchase_order (supplier_id, total_amount) VALUES ($1, $2)`, [supplier_id, total_amount]);
 
@@ -73,8 +74,16 @@ exports.updatePurchase = async (id, { item, pOrder_id, qty, unit_price, total_am
     const poId = await pool.query(`SELECT id FROM purchase_order WHERE supplier_id = $1 AND total_amount = $2`, [supplier_id, total_amount]);
     const po_id = poId.rows[0].id;
 
-    const itemId = await pool.query(`SELECT id FROM items WHERE name = $1`, [item]);
+    const itemId = await pool.query(`SELECT * FROM items WHERE name = $1`, [item]);
     const item_id = itemId.rows[0].id;
+    const availableQty = itemId.rows[0].qty_in_stock;
+
+    const finalQty = parseInt(qty) + parseInt(availableQty);
+    
+    if (status === 'Completed') {
+        await pool.query(`UPDATE items SET qty_in_stock = $1 WHERE id = $2`, [finalQty, item_id]);
+    };
+
 
     await pool.query(`UPDATE purchase_order_items
             SET po_id = $1,
