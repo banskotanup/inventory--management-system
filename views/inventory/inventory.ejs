@@ -55,6 +55,13 @@
                                 <div class="itemBtns">
                                   <form action="/inventory/<%=item.id%>/update" method="get">
                                     <button class="itemUpdateBtn" type="button" popovertarget="itemUpdate-<%=item.id%>" onclick="updateItem('<%=item.id%>')"><i class="fas fa-edit"></i></button>
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", ()=>{
+                                            <%if(showUpdatePopover){%>
+                                            document.getElementById("itemUpdate-<%=id%>").showPopover();
+                                            <%}%>
+                                        });
+                                    </script>
                                   </form>
                                     <form id="delete-form" action="/inventory/<%=item.id%>/delete" method="post">
                                         <button class="itemDeleteBtn" type="button" popovertarget="delete-popover"><i class="fa-solid fa-trash"></i></button>
@@ -78,5 +85,14 @@
     <%-include("./add_category.ejs")%>
     <%-include("./add.ejs")%>
     <%-include("./update.ejs")%>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            <%if(showAddPopover){%>
+                document.getElementById("itemAdd").showPopover();
+            <%}%>
+        });
+
+    </script>
 </body>
 </html>

@@ -9,25 +9,69 @@
                     <hr>
                     <form action="/inventory/add" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="customer_name">Name <span>*</span></label>
-                            <input type="text" name="name" id="name" required value="">
+                            <label for="name">Name <span>*</span></label>
+                            <input type="text" name="name" id="name" required value="<%=oldData?.name || '' %>">
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(errors && errors.name){%>
+                                <%=errors.name%>
+                            <%}%>
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(err?.name){%>
+                                <%=err.name%>
+                            <%}%>
                         </div>
                         <div class="form-group">
                             <label for="sku">Sku <span>*</span></label>
-                            <input type="text" name="sku" id="sku" required value="">
+                            <input type="text" name="sku" id="sku" required value="<%=oldData?.sku || '' %>">
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(errors && errors.sku){%>
+                                <%=errors.sku%>
+                            <%}%>
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(err?.sku){%>
+                                <%=err.sku%>
+                            <%}%>
                         </div>
                         <div class="form-group">
                             <label for="item">Description <span>*</span></label>
-                             <textarea name="desc" id="desc" rows="10"></textarea>
+                             <textarea name="desc" id="desc" rows="10"><%=oldData?.desc || ''%></textarea>
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(errors && errors.desc){%>
+                                <%=errors.desc%>
+                            <%}%>
+                        </div>
+                        <div style="color: red; margin-left: 10px;">
+                            <%if(err?.desc){%>
+                                <%=err.desc%>
+                            <%}%>
                         </div>
                         <div class="form-group">
                             <label for="itemImages">Image <span>*</span></label>
-                            <input type="file" name="item_image" id="item-image" accept="image/*" required>
+                            <%if(oldImage){%>
+                                <div class="img-div">
+                                    <img src="<%=oldImage%>" alt="" class="upImg">
+                                    <!-- <input type="hidden" name="item_image" id="item-image" value="<%=oldImage%>"> -->
+                                    <input type="file" name="item_image" id="item-image" accept="image/*" required>
+                                </div>
+                            <%}%>
+                            <%if(!oldImage){%>
+                                <input type="file" name="item_image" id="item-image" accept="image/*" required>
+                            <%}%>
                         </div>
                         <div class="form-group">
                             <label for="category_name">Category Name <span>*</span></label>
                              <select name="category_name" id="category_name" required>
-                                <option value="" selected disabled>Select category</option>
+                                <%if(!oldData){%>
+                                    <option value="" selected disabled>Select category</option>
+                                <%}%>
+                                <%if(oldData){%>
+                                    <option value="<%=oldData?.category_name%>" selected disabled><%=oldData?.category_name%></option>
+                                <%}%>
                                 <%category.forEach(cat=>{%>
                                     <option value="<%=cat.category_name%>"><%=cat.category_name%></option>
                                 <%});%>
@@ -36,7 +80,12 @@
                         <div class="form-group">
                             <label for="supplier_name">Supplier Name <span>*</span></label>
                              <select name="supplier_name" id="supplier_name" required>
-                                <option value="" selected disabled>Select suppliers</option>
+                                <%if(!oldData){%>
+                                    <option value="" selected disabled>Select suppliers</option>
+                                <%}%>
+                                <%if(oldData){%>
+                                    <option value="<%=oldData?.supplier_name%>" selected disabled><%=oldData?.supplier_name%></option>
+                                <%}%>
                                 <%suppliers.forEach(supplier=>{%>
                                     <option value="<%=supplier.name%>"><%=supplier.name%></option>
                                 <%});%>
@@ -44,12 +93,12 @@
                         </div>
                         <div class="form-group">
                             <label for="qty">Qty <span>*</span></label>
-                            <input type="text" name="qty" id="qty" required value="">
+                            <input type="text" name="qty" id="qty" required value="<%=oldData?.qty%>">
                         </div>
                         <div class="form-group">
                             <label for="unit_price">Unit Price <span>*</span></label>
                             <div id="form-group">
-                                <input type="text" id="unit_price" name="unit_price" required value="">
+                                <input type="text" id="unit_price" name="unit_price" required value="<%=oldData?.unit_price%>">
                             </div>
                         </div>
                         <div class="form-group"><button type="submit" id="itemUpdateBtn">Submit</button></div>

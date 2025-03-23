@@ -58,4 +58,4 @@ exports.getImage = async (id) => {
 
 exports.deleteItems = async (id) => {
     await pool.query(`DELETE FROM items WHERE id = $1`, [id]);
-}
+};
