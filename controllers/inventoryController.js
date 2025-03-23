@@ -25,6 +25,7 @@ exports.getInventory = async (req, res) => {
     errors: "",
     showAddPopover: false,
     showUpdatePopover: false,
+    showAddCategoryPopover: false,
     err: "",
   });
 };
@@ -45,11 +46,65 @@ const validateItems = [
     .withMessage(`Description ${descErr}`),
 ];
 
-exports.addCategory = async (req, res) => {
-  const { name, desc } = req.body;
-  await db.addCategory(name, desc);
-  res.redirect("/inventory");
-};
+const validateCategory = [
+  body("name").trim()
+    .isLength({ max: 255 }).withMessage(`Category name ${nameErr}`),
+];
+
+exports.addCategory = [validateCategory,
+  async (req, res) => {
+    const { name, desc } = req.body;
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      const errMsg = {};
+      err.array().forEach(error => {
+        if (error.path) {
+          errMsg[error.path] = error.msg;
+        }
+      });
+
+      return res.status(400).render("./inventory/inventory", {
+        title: "Our Inventory",
+        showAddCategoryPopover: true,
+        showAddPopover: false,
+        showUpdatePopover: false,
+        items: await db.getInventory(),
+        category: await db.getCategory(),
+        suppliers: await db.getSuppliers(),
+        oldData: req.body,
+        oldImage: ``,
+        err: errMsg,
+        errors: "",
+      });
+    }
+    try {
+      await db.addCategory(name, desc);
+      res.redirect("/inventory");
+    } catch (error) {
+      const errors = {};
+      if (error.code === '23505') {
+        if (error.detail.includes("name")) {
+          errors.name = (`Category name must be unique.`);
+        }
+      } else {
+        error.general = (`An error occurred.`);
+      }
+      res.render("./inventory/inventory", {
+        title: "Our Inventory",
+        showAddCategoryPopover: true,
+        showAddPopover: false,
+        showUpdatePopover: false,
+        items: await db.getInventory(),
+        category: await db.getCategory(),
+        suppliers: await db.getSuppliers(),
+        oldData: req.body,
+        oldImage: ``,
+        errors: errors,
+        err: "",
+      });
+    }
+  }
+];
 
 exports.addItem = [
   upload.single("item_image"),
@@ -67,6 +122,7 @@ exports.addItem = [
         title: "Our Inventory",
         showAddPopover: true,
         showUpdatePopover: false,
+        showAddCategoryPopover: false,
         items: await db.getInventory(),
         category: await db.getCategory(),
         suppliers: await db.getSuppliers(),
@@ -107,6 +163,7 @@ exports.addItem = [
 
       res.render("./inventory/inventory", {
         title: "Our Inventory",
+        showAddCategoryPopover: false,
         showAddPopover: true,
         showUpdatePopover: false,
         items: await db.getInventory(),
@@ -137,6 +194,7 @@ exports.updateInventory = [
 
       return res.status(400).render("./inventory/inventory", {
         title: "Our Inventory",
+        showAddCategoryPopover: false,
         showAddPopover: false,
         showUpdatePopover: true,
         items: await db.getInventory(),
@@ -184,6 +242,7 @@ exports.updateInventory = [
         title: "Our Inventory",
         showAddPopover: false,
         showUpdatePopover: true,
+        showAddCategoryPopover: false,
         items: await db.getInventory(),
         category: await db.getCategory(),
         suppliers: await db.getSuppliers(),
